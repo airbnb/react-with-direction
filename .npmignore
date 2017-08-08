@@ -61,6 +61,3 @@ typings/
 npm-shrinkwrap.json
 package-lock.json
 yarn.lock
-
-# babel output
-dist
