@@ -13,6 +13,7 @@ env:
     - TEST=true
   matrix:
     - REACT=0.14
+    - REACT=15.4
     - REACT=15
 sudo: false
 matrix:

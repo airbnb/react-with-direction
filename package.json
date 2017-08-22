@@ -18,6 +18,7 @@
     "clean": "rimraf dist",
     "react:clean": "npm uninstall --no-save react react-dom react-addons-test-utils react-test-renderer && rimraf node_modules/react-test-renderer node_modules/react && npm prune",
     "react:14": "npm run react:clean && npm i --no-save react@0.14 react-dom@0.14 react-addons-test-utils@0.14 && npm prune",
+    "react:15.4": "npm run react:clean && npm i --no-save react@15.4 react-dom@15.4 react-addons-test-utils@15.4 react-test-renderer@15.4 && npm prune",
     "react:15": "npm run react:clean && npm i --no-save react@15 react-dom@15 react-addons-test-utils@15 react-test-renderer@15 && npm prune",
     "prepublish": "safe-publish-latest"
   },
@@ -44,10 +45,10 @@
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.3.0",
     "jest": "^20.0.4",
-    "react": "^0.14 || ^15.6",
-    "react-addons-test-utils": "^0.14 || ^15.6",
-    "react-dom": "^0.14 || ^15.6",
-    "react-test-renderer": "^0.14 || ^15.6",
+    "react": "^0.14 || ^15",
+    "react-addons-test-utils": "^0.14 || ^15",
+    "react-dom": "^0.14 || ^15",
+    "react-test-renderer": "^0.14 || ^15",
     "rimraf": "^2.6.1",
     "safe-publish-latest": "^1.1.1",
     "sinon": "^3.2.1",
@@ -56,7 +57,7 @@
     "webpack": "^3.5.5"
   },
   "peerDependencies": {
-    "react": "^0.14 || ^15.6",
-    "react-dom": "^0.14 || ^15.6"
+    "react": "^0.14 || ^15",
+    "react-dom": "^0.14 || ^15"
   }
 }
