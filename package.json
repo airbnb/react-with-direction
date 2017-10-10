@@ -20,7 +20,7 @@
     "react:14": "npm run react:clean && npm i --no-save react@0.14 react-dom@0.14 react-addons-test-utils@0.14 enzyme-adapter-react-14 && npm prune && npm i --no-save react-addons-test-utils@0.14 enzyme-adapter-react-14",
     "react:15.4": "npm run react:clean && npm i --no-save react@15.4 react-dom@15.4 react-addons-test-utils@15.4 enzyme-adapter-react-15.4 react-test-renderer@15.4 && npm prune && npm i --no-save react-addons-test-utils@15.4 enzyme-adapter-react-15.4",
     "react:15": "npm run react:clean && npm i --no-save react@15 react-dom@15 react-test-renderer@15 react-addons-test-utils@15 enzyme-adapter-react-15 && npm prune && npm i --no-save react-addons-test-utils@15 enzyme-adapter-react-15",
-    "react:16": "npm run react:clean && npm i --no-save react@16 react-dom@16 react-test-renderer@16 && npm prune",
+    "react:16": "npm run react:clean && npm i --no-save react@16 react-dom@16 react-test-renderer@16 enzyme-adapter-react-16 && npm prune && npm i --no-save enzyme-adapter-react-16",
     "prepublish": "safe-publish-latest"
   },
   "dependencies": {
@@ -41,7 +41,6 @@
     "chai": "^4.1.1",
     "chai-enzyme": "^1.0.0-beta.0",
     "enzyme": "^3.1.0",
-    "enzyme-adapter-react-16": "^1.0.1",
     "eslint": "^4.5.0",
     "eslint-config-airbnb": "^15.1.0",
     "eslint-plugin-import": "^2.7.0",
