@@ -4,7 +4,7 @@ node_js:
   - "6"
   - "4"
 before_script:
-  - 'if [ -n "${REACT-}" ] && [ "${TEST-}" = true ]; then sh install-relevant-react.sh && npm ls >/dev/null; fi'
+  - 'if [ -n "${REACT-}" ] && [ "${TEST-}" = true ]; then sh install-relevant-react.sh; fi'
 script:
   - 'if [ -n "${LINT-}" ]; then npm run lint; fi'
   - 'if [ "${TEST-}" = true ]; then npm run test:only; fi'
