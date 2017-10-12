@@ -74,6 +74,7 @@ describe('withDirection()', () => {
         expect(wrapper).to.have.prop('direction', DIRECTIONS.LTR);
 
         wrapper.instance().componentDidMount();
+        wrapper.update();
         expect(wrapper).to.have.prop('direction', DIRECTIONS.RTL);
       });
 
