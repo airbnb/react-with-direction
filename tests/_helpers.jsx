@@ -3,25 +3,10 @@ import chai from 'chai';
 import sinonChai from 'sinon-chai';
 import sinon from 'sinon-sandbox';
 import chaiEnzyme from 'chai-enzyme';
-import Enzyme from 'enzyme';
 
-let Adapter;
+import configure from 'enzyme-adapter-react-helper';
 
-try {
-  Adapter = require('enzyme-adapter-react-16');
-} catch (e) {
-  try {
-    Adapter = require('enzyme-adapter-react-15');
-  } catch (e) {
-    try {
-      Adapter = require('enzyme-adapter-react-15.4');
-    } catch (e) {
-      Adapter = require('enzyme-adapter-react-14');
-    }
-  }
-}
-
-Enzyme.configure({ adapter: new Adapter(), disableLifecycleMethods: true });
+configure({ disableLifecycleMethods: true });
 
 chai.use(sinonChai);
 chai.use(chaiEnzyme());
