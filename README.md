@@ -47,7 +47,7 @@ You should set the `direction` prop based on the language of the content being r
 
 `DirectionProvider` components can also be nested, so that the direction can be overridden for certain branches of the React tree.
 
-`DirectionProvider` will render its children inside of a `<div>` element with a `dir` attribute set to match the `direction` prop, for example: `<div dir="rtl">`. This maintains consistency when being rendered in a browser.
+`DirectionProvider` will render its children inside of a `<div>` element with a `dir` attribute set to match the `direction` prop, for example: `<div dir="rtl">`. This maintains consistency when being rendered in a browser. To render inside of a `<span>` instead of a div, set the `inline` prop to `true`.
 
 Usage example:
 
