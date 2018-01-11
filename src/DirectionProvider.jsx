@@ -13,7 +13,12 @@ import { DIRECTIONS, CHANNEL } from './constants';
 const propTypes = forbidExtraProps({
   children: PropTypes.node.isRequired,
   direction: directionPropType.isRequired,
+  inline: PropTypes.bool,
 });
+
+const defaultProps = {
+  inline: false,
+};
 
 const childContextTypes = {
   [CHANNEL]: brcastShape,
@@ -40,14 +45,16 @@ export default class DirectionProvider extends React.Component {
   }
 
   render() {
-    const { children, direction } = this.props;
+    const { children, direction, inline } = this.props;
+    const Tag = inline ? 'span' : 'div';
     return (
-      <div dir={direction}>
+      <Tag dir={direction}>
         {React.Children.only(children)}
-      </div>
+      </Tag>
     );
   }
 }
 
 DirectionProvider.propTypes = propTypes;
+DirectionProvider.defaultProps = defaultProps;
 DirectionProvider.childContextTypes = childContextTypes;

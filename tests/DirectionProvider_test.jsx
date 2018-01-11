@@ -24,6 +24,16 @@ describe('<DirectionProvider>', () => {
     const wrapper = shallow(
       <DirectionProvider direction={direction}>{children}</DirectionProvider>,
     );
+    expect(wrapper).to.have.type('div');
+    expect(wrapper).to.have.prop('dir', direction);
+  });
+
+  it('renders a wrapping span when the inline prop is true', () => {
+    const direction = DIRECTIONS.RTL;
+    const wrapper = shallow(
+      <DirectionProvider direction={direction} inline>{children}</DirectionProvider>,
+    );
+    expect(wrapper).to.have.type('span');
     expect(wrapper).to.have.prop('dir', direction);
   });
 
