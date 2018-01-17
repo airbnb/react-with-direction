@@ -1,5 +1,8 @@
 # Change Log
 
+## v1.2.0
+- [New] Add `inline` option; if specified, will render a `span` instead of a `div`.
+
 ## v1.1.0
 - [New] increase peerDep/devDep range for react and bump enzyme (#2)
 - [Deps] update `hoist-non-react-statics`, `prop-types`
