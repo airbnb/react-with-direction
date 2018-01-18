@@ -18,7 +18,7 @@
     "test": "npm run test:only",
     "clean": "rimraf dist",
     "react": "enzyme-adapter-react-install 16",
-    "prepublish": "safe-publish-latest"
+    "prepublish": "safe-publish-latest && npm run build"
   },
   "dependencies": {
     "airbnb-prop-types": "^2.8.1",
