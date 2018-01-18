@@ -47,7 +47,6 @@
     "jest": "^21.2.1",
     "react": "^0.14 || ^15 || ^16",
     "react-dom": "^0.14 || ^15 || ^16",
-    "react-test-renderer": "^0.14 || ^15 || ^16",
     "rimraf": "^2.6.2",
     "safe-publish-latest": "^1.1.1",
     "sinon": "^4.1.6",
