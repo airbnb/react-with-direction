@@ -60,4 +60,29 @@ describe('<DirectionProvider>', () => {
     wrapper.setProps({ direction: nextDirection });
     expect(broadcastSpy).to.have.callCount(0);
   });
+
+  describe('when direction is undefined', () => {
+    it('renders its children', () => {
+      const wrapper = shallow(
+        <DirectionProvider>{children}</DirectionProvider>,
+      );
+      expect(wrapper.contains(children)).to.eq(true);
+    });
+
+    it('renders a wrapping div without a dir attribute', () => {
+      const direction = DIRECTIONS.RTL;
+      const wrapper = shallow(
+        <DirectionProvider>{children}</DirectionProvider>,
+      );
+      expect(wrapper).to.have.type('div');
+      expect(wrapper).not.to.have.prop('dir');
+    });
+
+    it('does not have childContext', () => {
+      const wrapper = shallow(
+        <DirectionProvider>{children}</DirectionProvider>,
+      );
+      expect(wrapper.instance().getChildContext()).to.eql({});
+    });
+  });
 });

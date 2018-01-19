@@ -12,11 +12,12 @@ import { DIRECTIONS, CHANNEL } from './constants';
 
 const propTypes = forbidExtraProps({
   children: PropTypes.node.isRequired,
-  direction: directionPropType.isRequired,
+  direction: directionPropType,
   inline: PropTypes.bool,
 });
 
 const defaultProps = {
+  direction: undefined,
   inline: false,
 };
 
@@ -33,6 +34,9 @@ export default class DirectionProvider extends React.Component {
   }
 
   getChildContext() {
+    if (!this.props.direction) {
+      return {};
+    }
     return {
       [CHANNEL]: this.broadcast,
     };
