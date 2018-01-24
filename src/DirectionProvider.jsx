@@ -4,7 +4,7 @@
 
 import PropTypes from 'prop-types';
 import React from 'react';
-import { forbidExtraProps } from 'airbnb-prop-types';
+import { explicitNull, forbidExtraProps, or } from 'airbnb-prop-types';
 import brcast from 'brcast';
 import brcastShape from './proptypes/brcast';
 import directionPropType from './proptypes/direction';
@@ -12,12 +12,11 @@ import { DIRECTIONS, CHANNEL } from './constants';
 
 const propTypes = forbidExtraProps({
   children: PropTypes.node.isRequired,
-  direction: directionPropType,
+  direction: or([directionPropType, explicitNull()]).isRequired,
   inline: PropTypes.bool,
 });
 
 const defaultProps = {
-  direction: undefined,
   inline: false,
 };
 
@@ -52,7 +51,7 @@ export default class DirectionProvider extends React.Component {
     const { children, direction, inline } = this.props;
     const Tag = inline ? 'span' : 'div';
     return (
-      <Tag dir={direction}>
+      <Tag dir={direction || undefined}>
         {React.Children.only(children)}
       </Tag>
     );

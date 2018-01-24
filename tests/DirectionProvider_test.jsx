@@ -61,18 +61,17 @@ describe('<DirectionProvider>', () => {
     expect(broadcastSpy).to.have.callCount(0);
   });
 
-  describe('when direction is undefined', () => {
+  describe('when direction is null', () => {
     it('renders its children', () => {
       const wrapper = shallow(
-        <DirectionProvider>{children}</DirectionProvider>,
+        <DirectionProvider direction={null}>{children}</DirectionProvider>,
       );
       expect(wrapper.contains(children)).to.eq(true);
     });
 
     it('renders a wrapping div without a dir attribute', () => {
-      const direction = DIRECTIONS.RTL;
       const wrapper = shallow(
-        <DirectionProvider>{children}</DirectionProvider>,
+        <DirectionProvider direction={null}>{children}</DirectionProvider>,
       );
       expect(wrapper).to.have.type('div');
       expect(wrapper).not.to.have.prop('dir');
@@ -80,7 +79,7 @@ describe('<DirectionProvider>', () => {
 
     it('does not have childContext', () => {
       const wrapper = shallow(
-        <DirectionProvider>{children}</DirectionProvider>,
+        <DirectionProvider direction={null}>{children}</DirectionProvider>,
       );
       expect(wrapper.instance().getChildContext()).to.eql({});
     });
