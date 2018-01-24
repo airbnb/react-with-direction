@@ -24,26 +24,66 @@ const childContextTypes = {
   [CHANNEL]: brcastShape,
 };
 
+const contextTypes = {
+  [CHANNEL]: brcastShape,
+};
+
 export { DIRECTIONS };
 
+const defaultDirection = DIRECTIONS.LTR;
+
+function getNextDirection(props, state) {
+  if (props.direction) {
+    return props.direction;
+  }
+
+  // else inherited
+  return state.inheritedDirection || defaultDirection;
+}
+
 export default class DirectionProvider extends React.Component {
-  constructor(props) {
+  constructor(props, context) {
     super(props);
-    this.broadcast = brcast(props.direction);
+    this.state = {
+      inheritedDirection: context[CHANNEL] ? context[CHANNEL].getState() : defaultDirection,
+    };
+
+    const direction = getNextDirection(props, this.state);
+    this.broadcast = brcast(direction);
   }
 
   getChildContext() {
-    if (!this.props.direction) {
-      return {};
-    }
     return {
       [CHANNEL]: this.broadcast,
     };
   }
 
+  componentDidMount() {
+    if (this.context[CHANNEL]) {
+      // subscribe to future direction changes
+      this.channelUnsubscribe = this.context[CHANNEL].subscribe((inheritedDirection) => {
+        if (this.state.inheritedDirection !== inheritedDirection) {
+          this.setState({ inheritedDirection });
+
+          if (!this.props.direction) {
+            this.broadcast.setState(inheritedDirection);
+          }
+        }
+      });
+    }
+  }
+
   componentWillReceiveProps(nextProps) {
-    if (this.props.direction !== nextProps.direction) {
-      this.broadcast.setState(nextProps.direction);
+    const nextDirection = getNextDirection(nextProps, this.state);
+
+    if (nextDirection !== this.broadcast.getState()) {
+      this.broadcast.setState(nextDirection);
+    }
+  }
+
+  componentWillUnmount() {
+    if (this.channelUnsubscribe) {
+      this.channelUnsubscribe();
     }
   }
 
@@ -61,3 +101,4 @@ export default class DirectionProvider extends React.Component {
 DirectionProvider.propTypes = propTypes;
 DirectionProvider.defaultProps = defaultProps;
 DirectionProvider.childContextTypes = childContextTypes;
+DirectionProvider.contextTypes = contextTypes;
