@@ -59,7 +59,25 @@ describe('<DirectionProvider>', () => {
     expect(broadcastSpy).to.have.callCount(0);
   });
 
-  describe('when direction is null', () => {
+  describe('when direction is omitted', () => {
+    it('throws an error', () => {
+      expect(() => {
+        getWrapper();
+      }).to.throw();
+    });
+  });
+
+  describe('when direction is null (inherited)', () => {
+    let brcast;
+    beforeEach(() => {
+      const unsubscribe = sinon.stub();
+      brcast = mockBrcast({
+        data: DIRECTIONS.LTR,
+        subscribe: sinon.stub().yields(DIRECTIONS.RTL).returns(unsubscribe),
+        unsubscribe,
+      });
+    });
+
     it('renders a wrapping div with a null dir attribute', () => {
       const wrapper = getWrapper({ direction: null });
       expect(wrapper).to.have.type('div');
@@ -70,24 +88,6 @@ describe('<DirectionProvider>', () => {
       const wrapper = getWrapper({ direction: null, inline: true });
       expect(wrapper).to.have.type('span');
       expect(wrapper).to.have.prop('dir', null);
-    });
-  });
-
-  it.skip('throws an error with no direction', () => {
-    expect(() => {
-      getWrapper();
-    }).to.throw();
-  });
-
-  describe('inherited direction', () => {
-    let brcast;
-    beforeEach(() => {
-      const unsubscribe = sinon.stub();
-      brcast = mockBrcast({
-        data: DIRECTIONS.LTR,
-        subscribe: sinon.stub().yields(DIRECTIONS.RTL).returns(unsubscribe),
-        unsubscribe,
-      });
     });
 
     describe('with a brcast context', () => {
