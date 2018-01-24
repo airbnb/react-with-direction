@@ -89,7 +89,7 @@ export default class DirectionProvider extends React.Component {
     const { children, direction, inline } = this.props;
     const Tag = inline ? 'span' : 'div';
     return (
-      <Tag dir={direction || undefined}>
+      <Tag dir={direction}>
         {React.Children.only(children)}
       </Tag>
     );

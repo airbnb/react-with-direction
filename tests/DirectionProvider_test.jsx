@@ -60,16 +60,16 @@ describe('<DirectionProvider>', () => {
   });
 
   describe('when direction is null', () => {
-    it('renders a wrapping div without a dir attribute', () => {
+    it('renders a wrapping div with a null dir attribute', () => {
       const wrapper = getWrapper({ direction: null });
       expect(wrapper).to.have.type('div');
-      expect(wrapper).not.to.have.prop('dir');
+      expect(wrapper).to.have.prop('dir', null);
     });
 
-    it('renders a wrapping span without a dir attribute', () => {
+    it('renders a wrapping span with a null dir attribute', () => {
       const wrapper = getWrapper({ direction: null, inline: true });
       expect(wrapper).to.have.type('span');
-      expect(wrapper).not.to.have.prop('dir');
+      expect(wrapper).to.have.prop('dir', null);
     });
   });
 
