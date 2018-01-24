@@ -7,7 +7,7 @@ import React from 'react';
 import hoistNonReactStatics from 'hoist-non-react-statics';
 import deepmerge from 'deepmerge';
 import getComponentName from 'airbnb-prop-types/build/helpers/getComponentName';
-import { CHANNEL, DIRECTIONS } from './constants';
+import { CHANNEL, DIRECTIONS, defaultDirection } from './constants';
 import brcastShape from './proptypes/brcast';
 import directionPropType from './proptypes/direction';
 
@@ -16,10 +16,6 @@ const contextTypes = {
 };
 
 export { DIRECTIONS };
-
-// set a default direction so that a component wrapped with this HOC can be
-// used even without a DirectionProvider ancestor in its react tree.
-const defaultDirection = DIRECTIONS.LTR;
 
 // export for convenience, in order for components to spread these onto their propTypes
 export const withDirectionPropTypes = {
@@ -31,6 +27,8 @@ export default function withDirection(WrappedComponent) {
     constructor(props, context) {
       super(props, context);
       this.state = {
+        // set a default direction so that a component wrapped with this HOC can be
+        // used even without a DirectionProvider ancestor in its react tree.
         direction: context[CHANNEL] ? context[CHANNEL].getState() : defaultDirection,
       };
     }

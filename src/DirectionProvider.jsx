@@ -8,7 +8,7 @@ import { explicitNull, forbidExtraProps, or } from 'airbnb-prop-types';
 import brcast from 'brcast';
 import brcastShape from './proptypes/brcast';
 import directionPropType from './proptypes/direction';
-import { DIRECTIONS, CHANNEL } from './constants';
+import { DIRECTIONS, CHANNEL, defaultDirection } from './constants';
 
 const propTypes = forbidExtraProps({
   children: PropTypes.node.isRequired,
@@ -29,8 +29,6 @@ const contextTypes = {
 };
 
 export { DIRECTIONS };
-
-const defaultDirection = DIRECTIONS.LTR;
 
 function getNextDirection(props, state) {
   if (props.direction) {

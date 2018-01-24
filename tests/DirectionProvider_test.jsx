@@ -3,8 +3,8 @@ import { expect } from 'chai';
 import { shallow } from 'enzyme';
 import sinon from 'sinon-sandbox';
 
+import { CHANNEL, DIRECTIONS, defaultDirection } from '../src/constants';
 import DirectionProvider from '../src/DirectionProvider';
-import { DIRECTIONS, CHANNEL } from '../src/constants';
 import mockBrcast from './mocks/brcast_mock';
 
 function getWrapper(props, context) {
@@ -201,7 +201,7 @@ describe('<DirectionProvider>', () => {
 
       it('sets initial state for inheritedDirection to the default direction', () => {
         const wrapper = getWrapper({ direction: null }, context);
-        expect(wrapper).to.have.state('inheritedDirection', DIRECTIONS.LTR);
+        expect(wrapper).to.have.state('inheritedDirection', defaultDirection);
       });
 
       it('does not call brcast subscribe when the component mounts', () => {
