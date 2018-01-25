@@ -15,6 +15,14 @@ const contextTypes = {
   [CHANNEL]: brcastShape,
 };
 
+const propTypes = {
+  direction: directionPropType,
+};
+
+const defaultProps = {
+  direction: null,
+};
+
 export { DIRECTIONS };
 
 // set a default direction so that a component wrapped with this HOC can be
@@ -51,7 +59,7 @@ export default function withDirection(WrappedComponent) {
     }
 
     render() {
-      const { direction } = this.state;
+      const direction = this.props.direction || this.state.direction;
 
       return (
         <WrappedComponent
@@ -67,12 +75,17 @@ export default function withDirection(WrappedComponent) {
   WithDirection.WrappedComponent = WrappedComponent;
   WithDirection.contextTypes = contextTypes;
   WithDirection.displayName = `withDirection(${wrappedComponentName})`;
+
   if (WrappedComponent.propTypes) {
-    WithDirection.propTypes = deepmerge({}, WrappedComponent.propTypes);
-    delete WithDirection.propTypes.direction;
+    WithDirection.propTypes = deepmerge(WrappedComponent.propTypes, propTypes);
+  } else {
+    WithDirection.propTypes = propTypes;
   }
+
   if (WrappedComponent.defaultProps) {
-    WithDirection.defaultProps = deepmerge({}, WrappedComponent.defaultProps);
+    WithDirection.defaultProps = deepmerge(WrappedComponent.defaultProps, defaultProps);
+  } else {
+    WithDirection.defaultProps = defaultProps;
   }
 
   return hoistNonReactStatics(WithDirection, WrappedComponent);

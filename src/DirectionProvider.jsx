@@ -9,6 +9,7 @@ import brcast from 'brcast';
 import brcastShape from './proptypes/brcast';
 import directionPropType from './proptypes/direction';
 import { DIRECTIONS, CHANNEL } from './constants';
+import withDirection from './withDirection';
 
 const propTypes = forbidExtraProps({
   children: PropTypes.node.isRequired,
@@ -26,7 +27,7 @@ const childContextTypes = {
 
 export { DIRECTIONS };
 
-export default class DirectionProvider extends React.Component {
+class DirectionProvider extends React.Component {
   constructor(props) {
     super(props);
     this.broadcast = brcast(props.direction);
@@ -58,3 +59,7 @@ export default class DirectionProvider extends React.Component {
 DirectionProvider.propTypes = propTypes;
 DirectionProvider.defaultProps = defaultProps;
 DirectionProvider.childContextTypes = childContextTypes;
+
+// allow `DirectionProvider` to inherit direction from an ancestor
+// when `direction={null}` is provided.
+export default withDirection(DirectionProvider);

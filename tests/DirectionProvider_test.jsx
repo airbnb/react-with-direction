@@ -1,9 +1,10 @@
 import React from 'react';
 import { expect } from 'chai';
-import { shallow } from 'enzyme';
+import { render, shallow } from 'enzyme';
 import sinon from 'sinon-sandbox';
 
 import DirectionProvider from '../src/DirectionProvider';
+import withDirection, { withDirectionPropTypes } from '../src/withDirection';
 import { DIRECTIONS } from '../src/constants';
 
 describe('<DirectionProvider>', () => {
@@ -15,7 +16,7 @@ describe('<DirectionProvider>', () => {
   it('renders its children', () => {
     const wrapper = shallow(
       <DirectionProvider direction={DIRECTIONS.RTL}>{children}</DirectionProvider>,
-    );
+    ).dive();
     expect(wrapper.contains(children)).to.eq(true);
   });
 
@@ -23,7 +24,7 @@ describe('<DirectionProvider>', () => {
     const direction = DIRECTIONS.RTL;
     const wrapper = shallow(
       <DirectionProvider direction={direction}>{children}</DirectionProvider>,
-    );
+    ).dive();
     expect(wrapper).to.have.type('div');
     expect(wrapper).to.have.prop('dir', direction);
   });
@@ -32,7 +33,7 @@ describe('<DirectionProvider>', () => {
     const direction = DIRECTIONS.RTL;
     const wrapper = shallow(
       <DirectionProvider direction={direction} inline>{children}</DirectionProvider>,
-    );
+    ).dive();
     expect(wrapper).to.have.type('span');
     expect(wrapper).to.have.prop('dir', direction);
   });
@@ -42,8 +43,8 @@ describe('<DirectionProvider>', () => {
     const nextDirection = DIRECTIONS.RTL;
     const wrapper = shallow(
       <DirectionProvider direction={direction}>{children}</DirectionProvider>,
-    );
-    const broadcast = wrapper.instance().broadcast;
+    ).dive();
+    const { broadcast } = wrapper.instance();
     const broadcastSpy = sinon.spy(broadcast, 'setState');
     wrapper.setProps({ direction: nextDirection });
     expect(broadcastSpy).to.have.callCount(1);
@@ -54,10 +55,32 @@ describe('<DirectionProvider>', () => {
     const nextDirection = DIRECTIONS.LTR;
     const wrapper = shallow(
       <DirectionProvider direction={direction}>{children}</DirectionProvider>,
-    );
-    const broadcast = wrapper.instance().broadcast;
+    ).dive();
+    const { broadcast } = wrapper.instance();
     const broadcastSpy = sinon.spy(broadcast, 'setState');
     wrapper.setProps({ direction: nextDirection });
     expect(broadcastSpy).to.have.callCount(0);
+  });
+
+  it('inherits direction from context when a `null` direction is set', () => {
+    function TestComponent({ direction }) {
+      console.log('DIRECTION', direction)
+      expect(direction).to.equal(DIRECTIONS.RTL);
+      return null;
+    }
+
+    TestComponent.propTypes = withDirectionPropTypes;
+
+    const TestComponentWithDirection = withDirection(TestComponent);
+
+    render(
+      <DirectionProvider direction={DIRECTIONS.RTL}>
+        <div>
+          <DirectionProvider direction={null}>
+            <TestComponentWithDirection />
+          </DirectionProvider>
+        </div>
+      </DirectionProvider>,
+    );
   });
 });

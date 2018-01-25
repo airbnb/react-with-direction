@@ -49,6 +49,32 @@ describe('withDirection()', () => {
     );
   });
 
+  describe('with a direction prop', () => {
+    it('passes direction from the prop instead of context', () => {
+      const Wrapped = getWrappedComponent(DIRECTIONS.LTR);
+
+      render(
+        <DirectionProvider direction={DIRECTIONS.RTL}>
+          <div>
+            <Wrapped direction={DIRECTIONS.LTR} />
+          </div>
+        </DirectionProvider>,
+      );
+    });
+
+    it('ignores `null` and passes direction from context', () => {
+      const Wrapped = getWrappedComponent(DIRECTIONS.RTL);
+
+      render(
+        <DirectionProvider direction={DIRECTIONS.RTL}>
+          <div>
+            <Wrapped direction={null} />
+          </div>
+        </DirectionProvider>,
+      );
+    });
+  });
+
   describe('lifecycle methods', () => {
     let brcast;
     beforeEach(() => {
