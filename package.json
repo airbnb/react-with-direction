@@ -16,6 +16,7 @@
     "pretest:only": "npm run react",
     "test:only": "jest",
     "test": "npm run test:only",
+    "test:watch": "npm run test:only -- --watchAll",
     "clean": "rimraf dist",
     "react": "enzyme-adapter-react-install 16",
     "prepublish": "safe-publish-latest && npm run build"
