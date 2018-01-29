@@ -63,6 +63,26 @@ import DirectionProvider, { DIRECTIONS } from 'react-with-direction/dist/Directi
 </DirectionProvider>
 ```
 
+## AutoDirectionProvider
+
+Use `AutoDirectionProvider` around, for example, user-generated content where the text direction is unknown or may change. This renders a `DirectionProvider` with the `direction` prop automatically set based on the `text` prop provided.
+
+Direction will be determined based on the first strong LTR/RTL character in the `text` string. Strings with no strong direction (e.g., numbers) will inherit the direction from it's nearest `DirectionProider` anscestor.
+
+Usage example:
+
+```js
+import AutoDirectionProvider from 'react-with-direction/dist/AutoDirectionProvider';
+```
+
+```js
+<AutoDirectionProvider text={userGeneratedContent}>
+  <ExampleComponent>
+    {userGeneratedContent}
+  </ExampleComponent>
+</AutoDirectionProvider>
+```
+
 [package-url]: https://npmjs.org/package/react-with-direction
 [npm-version-svg]: http://versionbadg.es/airbnb/react-with-direction.svg
 [travis-svg]: https://travis-ci.org/airbnb/react-with-direction.svg
