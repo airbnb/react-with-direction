@@ -67,7 +67,7 @@ import DirectionProvider, { DIRECTIONS } from 'react-with-direction/dist/Directi
 
 Use `AutoDirectionProvider` around, for example, user-generated content where the text direction is unknown or may change. This renders a `DirectionProvider` with the `direction` prop automatically set based on the `text` prop provided.
 
-Direction will be determined based on the first strong LTR/RTL character in the `text` string. Strings with no strong direction (e.g., numbers) will inherit the direction from it's nearest `DirectionProider` anscestor.
+Direction will be determined based on the first strong LTR/RTL character in the `text` string. Strings with no strong direction (e.g., numbers) will inherit the direction from its nearest `DirectionProvider` ancestor or default to LTR.
 
 Usage example:
 

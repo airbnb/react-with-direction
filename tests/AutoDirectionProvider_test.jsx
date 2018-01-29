@@ -39,7 +39,7 @@ describe('<AutoDirectionProvider>', () => {
       expect(wrapper.find(DirectionProvider)).to.have.prop('direction', DIRECTIONS.RTL);
     });
 
-    it('in inherited from context for neutral strings', () => {
+    it('is inherited from context for neutral strings', () => {
       const wrapper = shallow(
         (
           <AutoDirectionProvider text="1">

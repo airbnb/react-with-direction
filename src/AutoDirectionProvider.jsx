@@ -31,7 +31,7 @@ function AutoDirectionProvider({
       direction={dir}
       inline={inline}
     >
-      {children}
+      {React.Children.only(children)}
     </DirectionProvider>
   );
 }
