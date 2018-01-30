@@ -4,3 +4,5 @@ export const DIRECTIONS = {
   LTR: 'ltr',
   RTL: 'rtl',
 };
+
+export const defaultDirection = DIRECTIONS.LTR;
