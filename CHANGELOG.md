@@ -1,5 +1,8 @@
 # Change Log
 
+## v1.3.0
+- [New] Add `AutoDirectionProvider` component for automatically detected direction.
+
 ## v1.2.0
 - [New] Add `inline` option; if specified, will render a `span` instead of a `div`.
 
