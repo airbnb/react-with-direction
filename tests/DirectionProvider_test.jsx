@@ -1,6 +1,15 @@
+/**
+ * @jest-environment jsdom
+ */
+
+ // We must set the env to jsdom for this file to accommodate mounted components.
+ // The components must be mounted because there is currently no way to test
+ // code within componentDidUpdate lifecycle in shallow mounting.
+ // https://github.com/airbnb/enzyme/issues/1452
+
 import React from 'react';
 import { expect } from 'chai';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import sinon from 'sinon-sandbox';
 
 import DirectionProvider from '../src/DirectionProvider';
@@ -40,7 +49,7 @@ describe('<DirectionProvider>', () => {
   it('broadcasts the direction when the direction prop changes', () => {
     const direction = DIRECTIONS.LTR;
     const nextDirection = DIRECTIONS.RTL;
-    const wrapper = shallow(
+    const wrapper = mount(
       <DirectionProvider direction={direction}>{children}</DirectionProvider>,
     );
     const broadcast = wrapper.instance().broadcast;
@@ -52,7 +61,7 @@ describe('<DirectionProvider>', () => {
   it('does not broadcast the direction when the direction prop stays the same', () => {
     const direction = DIRECTIONS.LTR;
     const nextDirection = DIRECTIONS.LTR;
-    const wrapper = shallow(
+    const wrapper = mount(
       <DirectionProvider direction={direction}>{children}</DirectionProvider>,
     );
     const broadcast = wrapper.instance().broadcast;
