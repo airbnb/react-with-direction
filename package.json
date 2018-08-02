@@ -22,14 +22,14 @@
     "prepublish": "safe-publish-latest && npm run build"
   },
   "dependencies": {
-    "airbnb-prop-types": "^2.8.1",
+    "airbnb-prop-types": "^2.10.0",
     "brcast": "^2.0.2",
-    "deepmerge": "^1.5.1",
-    "direction": "^1.0.1",
-    "hoist-non-react-statics": "^2.3.1",
+    "deepmerge": "^1.5.2",
+    "direction": "^1.0.2",
+    "hoist-non-react-statics": "^2.5.5",
     "object.assign": "^4.1.0",
     "object.values": "^1.0.4",
-    "prop-types": "^15.6.0"
+    "prop-types": "^15.6.2"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
