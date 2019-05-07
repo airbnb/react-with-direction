@@ -6,12 +6,12 @@ import directionPropType from './proptypes/direction';
 import DirectionProvider from './DirectionProvider';
 import withDirection from './withDirection';
 
-const propTypes = forbidExtraProps({
+const propTypes = {
   children: PropTypes.node.isRequired,
   direction: directionPropType.isRequired,
   inline: PropTypes.bool,
   text: PropTypes.string.isRequired,
-});
+};
 
 const defaultProps = {
   inline: false,
@@ -22,12 +22,14 @@ function AutoDirectionProvider({
   direction,
   inline,
   text,
+  ...rest
 }) {
   const textDirection = getDirection(text);
   const dir = textDirection === 'neutral' ? direction : textDirection;
 
   return (
     <DirectionProvider
+      {...rest}
       direction={dir}
       inline={inline}
     >

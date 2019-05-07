@@ -18,6 +18,17 @@ describe('<AutoDirectionProvider>', () => {
     expect(wrapper).to.have.exactly(1).descendants(DirectionProvider);
   });
 
+  it('passes additional props to the DirectionProvider', () => {
+    const wrapper = shallow((
+      <AutoDirectionProvider text="a" data-foo="bar" style={{ background: 'red' }}>
+        <div />
+      </AutoDirectionProvider>
+    )).dive();
+
+    expect(wrapper.find(DirectionProvider).prop('data-foo')).to.equal('bar');
+    expect(wrapper.find(DirectionProvider).prop('style')).to.eql({ background: 'red' });
+  });
+
   describe('direction prop', () => {
     it('is LTR correct for LTR strings', () => {
       const wrapper = shallow((

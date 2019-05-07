@@ -60,4 +60,18 @@ describe('<DirectionProvider>', () => {
     wrapper.setProps({ direction: nextDirection });
     expect(broadcastSpy).to.have.callCount(0);
   });
+
+  it('renders a wrapping div and allows passing additional props', () => {
+    const direction = DIRECTIONS.RTL;
+    const wrapper = shallow(
+      <DirectionProvider
+        direction={direction}
+        data-foo="bar"
+        style={{ background: 'red' }}
+      >{children}</DirectionProvider>,
+    );
+
+    expect(wrapper.prop('data-foo')).to.equal('bar');
+    expect(wrapper.prop('style')).to.eql({ background: 'red' });
+  });
 });
