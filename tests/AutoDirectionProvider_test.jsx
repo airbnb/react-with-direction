@@ -56,6 +56,38 @@ describe('<AutoDirectionProvider>', () => {
 
       expect(wrapper.find(DirectionProvider)).to.have.prop('direction', DIRECTIONS.RTL);
     });
+
+    it('is RTL correct for overwriten direction prop for neutral strings', () => {
+      const wrapper = shallow(
+        <AutoDirectionProvider text="(555) 555 5555" direction={DIRECTIONS.RTL}>
+          <div />
+        </AutoDirectionProvider>,
+      ).dive();
+      expect(wrapper.find(DirectionProvider)).to.have.prop('direction', DIRECTIONS.RTL);
+    });
+
+    it('is LTR correct for overwriten direction prop for neutral strings', () => {
+      const wrapper = shallow(
+        <AutoDirectionProvider text="(555) 555 5555" direction={DIRECTIONS.LTR}>
+          <div />
+        </AutoDirectionProvider>,
+      ).dive();
+      expect(wrapper.find(DirectionProvider)).to.have.prop('direction', DIRECTIONS.LTR);
+    });
+
+    it('is RTL correct for overwriten context direction when no text value is provided', () => {
+      const wrapper = shallow(
+        <DirectionProvider direction={DIRECTIONS.LTR}>
+          <AutoDirectionProvider text="" direction={DIRECTIONS.RTL}>
+            <div />
+          </AutoDirectionProvider>
+        </DirectionProvider>,
+      )
+        .find(AutoDirectionProvider)
+        .shallow()
+        .dive();
+      expect(wrapper.find(DirectionProvider)).to.have.prop('direction', DIRECTIONS.RTL);
+    });
   });
 
   it('renders its children', () => {

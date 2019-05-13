@@ -23,16 +23,19 @@ const defaultDirection = DIRECTIONS.LTR;
 
 // export for convenience, in order for components to spread these onto their propTypes
 export const withDirectionPropTypes = {
-  direction: directionPropType.isRequired,
+  direction: directionPropType,
 };
 
 export default function withDirection(WrappedComponent) {
   class WithDirection extends React.Component {
     constructor(props, context) {
       super(props, context);
-      this.state = {
-        direction: context[CHANNEL] ? context[CHANNEL].getState() : defaultDirection,
-      };
+      let direction = context[CHANNEL] ? context[CHANNEL].getState() : defaultDirection;
+      // console.log(props.direction);
+      if (props.direction) {
+        direction = props.direction;
+      }
+      this.state = { direction };
     }
 
     componentDidMount() {
@@ -68,8 +71,7 @@ export default function withDirection(WrappedComponent) {
   WithDirection.contextTypes = contextTypes;
   WithDirection.displayName = `withDirection(${wrappedComponentName})`;
   if (WrappedComponent.propTypes) {
-    WithDirection.propTypes = deepmerge({}, WrappedComponent.propTypes);
-    delete WithDirection.propTypes.direction;
+    WithDirection.propTypes = deepmerge(WrappedComponent.propTypes, withDirectionPropTypes);
   }
   if (WrappedComponent.defaultProps) {
     WithDirection.defaultProps = deepmerge({}, WrappedComponent.defaultProps);

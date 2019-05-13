@@ -49,6 +49,23 @@ describe('withDirection()', () => {
     );
   });
 
+  describe('overwrite direction', () => {
+    it('uses the provided direction to overwrite the default', () => {
+      const Wrapped = getWrappedComponent(DIRECTIONS.RTL);
+      render(<Wrapped direction={DIRECTIONS.RTL} />);
+    });
+    it('uses the provided direction to overwrite the context', () => {
+      const Wrapped = getWrappedComponent(DIRECTIONS.LTR);
+      render(
+        <DirectionProvider direction={DIRECTIONS.RTL}>
+          <div>
+            <Wrapped direction={DIRECTIONS.LTR} />
+          </div>
+        </DirectionProvider>,
+      );
+    });
+  });
+
   describe('lifecycle methods', () => {
     let brcast;
     beforeEach(() => {
