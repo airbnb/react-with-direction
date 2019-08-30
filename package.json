@@ -1,6 +1,6 @@
 {
   "name": "react-with-direction",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "Components to provide and consume RTL or LTR direction in React",
   "author": "Yaniv Zimet <yaniv.zimet@airbnb.com>",
   "repository": "airbnb/react-with-direction",

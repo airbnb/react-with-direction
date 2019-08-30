@@ -1,5 +1,10 @@
 # Change Log
 
+## v1.3.1
+- [Deps] Update hoist-non-react-statics to 3.3.0
+- [Deps] update `airbnb-prop-types`, `deepmerge`, `direction`, `hoist-non-react-statics`, `prop-types`
+- [Dev Deps] update `babel-plugin-transform-replace-object-assign`, `babel-preset-airbnb`, `chai-enzyme`, `enzyme-adapter-react-helper`, `eslint`, `eslint-config-airbnb`, `eslint-plugin-import`, `eslint-plugin-jsx-a11y`, `eslint-plugin-react`, `sinon`, `sinon-chai`, `sinon-sandbox`
+
 ## v1.3.0
 - [New] Add `AutoDirectionProvider` component for automatically detected direction.
 
