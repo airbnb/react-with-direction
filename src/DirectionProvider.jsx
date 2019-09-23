@@ -38,9 +38,9 @@ export default class DirectionProvider extends React.Component {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props.direction !== nextProps.direction) {
-      this.broadcast.setState(nextProps.direction);
+  componentDidUpdate(prevProps) {
+    if (prevProps.direction !== this.props.direction) {
+      this.broadcast.setState(this.props.direction);
     }
   }
 

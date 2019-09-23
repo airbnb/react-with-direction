@@ -5,6 +5,7 @@ import sinon from 'sinon-sandbox';
 import chaiEnzyme from 'chai-enzyme';
 
 import configure from 'enzyme-adapter-react-helper';
+import './shim';
 
 configure({ disableLifecycleMethods: true });
 
