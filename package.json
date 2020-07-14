@@ -59,5 +59,8 @@
   "peerDependencies": {
     "react": "^0.14 || ^15 || ^16",
     "react-dom": "^0.14 || ^15 || ^16"
+  },
+  "engines": {
+    "node": ">=4"
   }
 }
