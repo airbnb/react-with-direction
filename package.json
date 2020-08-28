@@ -24,7 +24,7 @@
   "dependencies": {
     "airbnb-prop-types": "^2.16.0",
     "brcast": "^2.0.2",
-    "deepmerge": "^1.5.2",
+    "deepmerge": "^3.3.0",
     "direction": "^1.0.4",
     "hoist-non-react-statics": "^3.3.2",
     "object.assign": "^4.1.2",
