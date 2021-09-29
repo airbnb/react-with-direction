@@ -37,6 +37,14 @@ describe('<DirectionProvider>', () => {
     expect(wrapper).to.have.prop('dir', direction);
   });
 
+  it('renders a lang attribute when the lang prop is set', () => {
+    const direction = DIRECTIONS.RTL;
+    const wrapper = shallow(
+      <DirectionProvider direction={direction} lang="ar">{children}</DirectionProvider>,
+    );
+    expect(wrapper).to.have.prop('lang', 'ar');
+  });
+
   it('broadcasts the direction when the direction prop changes', () => {
     const direction = DIRECTIONS.LTR;
     const nextDirection = DIRECTIONS.RTL;

@@ -87,4 +87,14 @@ describe('<AutoDirectionProvider>', () => {
 
     expect(wrapper.find(DirectionProvider)).to.have.prop('inline', true);
   });
+
+  it('passes the lang prop to DirectionProvider', () => {
+    const wrapper = shallow((
+      <AutoDirectionProvider text="a" lang="en">
+        <div />
+      </AutoDirectionProvider>
+    )).dive();
+
+    expect(wrapper.find(DirectionProvider)).to.have.prop('lang', 'en');
+  });
 });

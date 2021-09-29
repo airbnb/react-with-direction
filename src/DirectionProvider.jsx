@@ -14,6 +14,7 @@ const propTypes = forbidExtraProps({
   children: PropTypes.node.isRequired,
   direction: directionPropType.isRequired,
   inline: PropTypes.bool,
+  lang: PropTypes.string,
 });
 
 const defaultProps = {
@@ -45,10 +46,10 @@ export default class DirectionProvider extends React.Component {
   }
 
   render() {
-    const { children, direction, inline } = this.props;
+    const { children, direction, inline, lang } = this.props;
     const Tag = inline ? 'span' : 'div';
     return (
-      <Tag dir={direction}>
+      <Tag dir={direction} {...(lang && { lang })}>
         {React.Children.only(children)}
       </Tag>
     );

@@ -11,6 +11,7 @@ const propTypes = forbidExtraProps({
   direction: directionPropType.isRequired,
   inline: PropTypes.bool,
   text: PropTypes.string.isRequired,
+  lang: PropTypes.string,
 });
 
 const defaultProps = {
@@ -22,6 +23,7 @@ function AutoDirectionProvider({
   direction,
   inline,
   text,
+  lang,
 }) {
   const textDirection = getDirection(text);
   const dir = textDirection === 'neutral' ? direction : textDirection;
@@ -30,6 +32,7 @@ function AutoDirectionProvider({
     <DirectionProvider
       direction={dir}
       inline={inline}
+      {...(lang && { lang })}
     >
       {React.Children.only(children)}
     </DirectionProvider>

@@ -55,13 +55,29 @@ Usage example:
 import DirectionProvider, { DIRECTIONS } from 'react-with-direction/dist/DirectionProvider';
 ```
 
-```js
+```jsx
 <DirectionProvider direction={DIRECTIONS.RTL}>
   <div>
     <ForwardsLabel />
   </div>
 </DirectionProvider>
 ```
+
+To set the `lang` attribute on the wrapping element, provide the `lang` prop to `DirectionProvider`.
+
+Usage example:
+
+```jsx
+import DirectionProvider, { DIRECTIONS } from 'react-with-direction/dist/DirectionProvider';
+
+<DirectionProvider direction={DIRECTIONS.RTL} lang="ar">
+  <div>
+    <ForwardsLabel />
+  </div>
+</DirectionProvider>
+```
+
+Note that `lang` and `direction` are independent – `lang` only sets the attribute on the wrapping element.
 
 ## AutoDirectionProvider
 
@@ -82,6 +98,8 @@ import AutoDirectionProvider from 'react-with-direction/dist/AutoDirectionProvid
   </ExampleComponent>
 </AutoDirectionProvider>
 ```
+
+`AutoDirectionProvider` also supports the `lang` prop in the same way as `DirectionProvider` does.
 
 [package-url]: https://npmjs.org/package/react-with-direction
 [npm-version-svg]: http://versionbadg.es/airbnb/react-with-direction.svg
