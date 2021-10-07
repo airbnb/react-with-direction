@@ -39,6 +39,7 @@
     "casual": "^1.5.19",
     "chai": "^4.1.2",
     "chai-enzyme": "^1.0.0-beta.1",
+    "cheerio": "=1.0.0-rc.3",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-helper": "^1.2.3",
     "eslint": "^4.19.1",
