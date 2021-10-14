@@ -1,5 +1,10 @@
 # Change Log
 
+## v1.4.0
+- [New] `DirectionProvider`: add `lang` prop
+- [Deps] update `airbnb-prop-types`, `direction`, `hoist-non-react-statics`, `object.assign`, `object.values`, `prop-types`
+- [Dev Deps] update `babel-preset-airbnb`, `casual`, `chai, `enzyme`, `enzyme-adapter-react-helper`, `eslint`, `eslint-config-airbnb`, `eslint-plugin-import`, `eslint-plugin-jsx-a11y`, `eslint-plugin-react`, `rimraf`, `safe-publish-latest`, `sinon-chai`, `sinon-sandbox`, `webpack`
+
 ## v1.3.1
 - [Deps] Update hoist-non-react-statics to 3.3.0
 - [Deps] update `airbnb-prop-types`, `deepmerge`, `direction`, `hoist-non-react-statics`, `prop-types`
